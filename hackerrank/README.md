@@ -4,6 +4,7 @@
 - Add your test program named ${PROGRAM_NAME}.c or .cpp or .java
 - Execute run_test.sh to test your code as below
 
+```
 CHI-FENGs-MBP:hackerrank jhung$ ./run_test.sh test Trial
 [Input]
 5 4
@@ -15,3 +16,4 @@ CHI-FENGs-MBP:hackerrank jhung$ ./run_test.sh test Trial
 
 Result:
 OK
+```
