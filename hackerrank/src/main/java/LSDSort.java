@@ -4,7 +4,7 @@ import java.util.Scanner;
  * Created by jhung on 2/7/18.
  */
 public class LSDSort {
-    public static void sort(String [] a, int W) {
+    private static void sort(String [] a, int W) {
         int R = 256;
         int N = a.length;
         String [] aux = new String[N];
@@ -13,6 +13,7 @@ public class LSDSort {
             int [] count = new int[R+1];
 
             for (int i=0; i<N; i++) {
+                // Shift one index to prepare starting point of each type of character
                 count[a[i].charAt(d)+1]++;
             }
 
@@ -41,8 +42,8 @@ public class LSDSort {
         }
         sort(a, W);
 
-        for (int i=0; i<a.length; i++) {
-            System.out.println(a[i]);
+        for (String s : a) {
+            System.out.println(s);
         }
     }
 }
