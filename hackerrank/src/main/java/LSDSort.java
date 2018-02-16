@@ -3,8 +3,11 @@ import java.util.Scanner;
 /**
  * Created by jhung on 2/7/18.
  */
+
 public class LSDSort {
-    private static void sort(String [] a, int W) {
+    private static final boolean DEBUG = false;
+    private static void sort(String [] a, int W)
+    {
         int R = 256;
         int N = a.length;
         String [] aux = new String[N];
@@ -28,6 +31,18 @@ public class LSDSort {
             for (int i=0; i<N; i++) {
                 a[i] = aux[i];
             }
+
+            if (DEBUG) {
+                printStrings(a);
+                System.out.println("-----");
+            }
+        }
+    }
+
+    private static void printStrings(String[] a)
+    {
+        for (String s : a) {
+            System.out.println(s);
         }
     }
 
@@ -42,8 +57,6 @@ public class LSDSort {
         }
         sort(a, W);
 
-        for (String s : a) {
-            System.out.println(s);
-        }
+        printStrings(a);
     }
 }

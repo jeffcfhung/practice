@@ -28,8 +28,10 @@ expect() {
     echo "[Output]\n$1\n[Expected]\n$2\n\nResult:"
     if [ "$1" = "$2" ]; then
         echo "OK"
+        exit 0
     else
         echo "Failed"
+        exit -1
     fi
 }
 
@@ -68,7 +70,7 @@ shift
 
 if [ "$program" = "" ] ; then
     echo "Usage: $0 <action> <program_name> [index of test case]"
-    echo "  <action> test or build"
+    echo "  <action> test, build or create_data_file"
     echo "  [index of test case] Can be empty which implies default"
     echo "  Example: ./run_test.sh test Trial 1"
     exit 1
@@ -80,6 +82,9 @@ case $action in
         ;;
     build)
         build $program
+        ;;
+    create_data_file)
+        touch ${program}_input.txt ${program}_output.txt
         ;;
     *)
         ;;
