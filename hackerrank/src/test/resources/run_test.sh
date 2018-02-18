@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 LANG='java'
 build() {
@@ -25,13 +25,19 @@ run() {
 }
 
 expect() {
-    echo "[Output]\n$1\n[Expected]\n$2\n\nResult:"
+    echo "[Output]"
+    echo "$1"
+    echo "[Expected]"
+    echo "$2"
+    echo "[Result]"
+
     if [ "$1" = "$2" ]; then
         echo "OK"
         exit 0
     else
         echo "Failed"
-        exit -1
+        diff <(echo "$1") <(echo "$2")
+        exit 1
     fi
 }
 
@@ -51,14 +57,13 @@ test() {
     fi
 
     echo "[Input]"
-    echo ${program}
     cat ${program}_input"$case".txt
 
     execCmd='./${program}'
     if [ "$LANG" = "java" ] ; then
         execCmd="java -classpath ../../main/java ${program}"
     fi
-    expect "`${execCmd} < ${program}_input$case.txt`" "`cat ${program}_output$case.txt`"
+    expect "`${execCmd} < ${program}_input${case}.txt`" "`cat ${program}_output${case}.txt`"
 }
 
 action=$1

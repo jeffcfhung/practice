@@ -5,7 +5,19 @@ public class HackerlandRadioTransmitters {
     static int hackerlandRadioTransmitters(int[] x, int k) {
         // Complete this function
         Arrays.sort(x);
-        
+
+        int n = x.length;
+        int i = 0, hrtNum = 0;
+
+        while (i < n) {
+            hrtNum++;
+            int loc = x[i] + k;
+            while (i < n && x[i] <= loc) i++;
+            loc = x[--i] + k;
+            while (i < n && x[i] <= loc) i++;
+        }
+
+        return hrtNum;
     }
 
     public static void main(String[] args) {
