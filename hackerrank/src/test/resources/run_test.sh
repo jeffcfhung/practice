@@ -57,7 +57,7 @@ test() {
     fi
 
     echo "[Input]"
-    cat ${program}_input"$case".txt
+    cat ${program}_input"${case}".txt
 
     execCmd='./${program}'
     if [ "$LANG" = "java" ] ; then
@@ -66,9 +66,26 @@ test() {
     expect "`${execCmd} < ${program}_input${case}.txt`" "`cat ${program}_output${case}.txt`"
 }
 
+create_data_file() {
+    program=$1
+    case=$2
+    input=${program}_input${case}.txt
+    output=${program}_output${case}.txt
+    
+    if [ -f ${input} ] ; then
+        echo "[WARN] File exists, do nothing"
+        exit 1
+    fi
+
+    touch ${input} ${output}
+    echo "Replace input data in this file" > ${input}
+    echo "Replace expected data in this file" > ${output}
+    echo "Test files: ${input}.txt ${output} created"
+}
+
 action=$1
 program=$2
-echo ${program}
+#echo ${program}
 
 shift
 shift
@@ -89,7 +106,7 @@ case $action in
         build $program
         ;;
     create_data_file)
-        touch ${program}_input.txt ${program}_output.txt
+        create_data_file $program $*
         ;;
     *)
         ;;
