@@ -80,7 +80,7 @@ create_data_file() {
     touch ${input} ${output}
     echo "Replace input data in this file" > ${input}
     echo "Replace expected data in this file" > ${output}
-    echo "Test files: ${input}.txt ${output} created"
+    echo "Test files: ${input} ${output} created"
 }
 
 action=$1
