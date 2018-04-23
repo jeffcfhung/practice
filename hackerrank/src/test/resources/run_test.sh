@@ -36,7 +36,7 @@ expect() {
         exit 0
     else
         echo "Failed"
-        diff <(echo "$1") <(echo "$2")
+        diff -y <(echo "$1") <(echo "$2")  | cat -n | grep -v -e '($'
         exit 1
     fi
 }
