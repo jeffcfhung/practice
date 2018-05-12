@@ -19,19 +19,26 @@ public class TheCoinChangeProblem {
 		}
 
 		// no coin is given, there is no way
-		for (int i=1; i<=amount; i++) {
-			res[0][i] = 0;
+		for (int j=1; j<=amount; j++) {
+			res[0][j] = 0;
 		}
+
+//		for (int i=0; i<=num; i++) {
+//			for (int j=0; j<=amount; j++) {
+//				System.out.print(res[i][j] + " ");
+//			}
+//			System.out.println("");
+//		}
 
 		for (int i=1; i<=num; i++) {
 			for (int j=1; j<=amount; j++) {
 				if (coins[i-1] <= j) {
-					//System.out.println("a:" + i + "," + j + ":" + coins[i-1] + " " + res[i][j]);
+//					System.out.println("a:" + i + "," + j + ":" + coins[i-1] + " " + res[i][j]);
 					res[i][j] = res[i-1][j] + res[i][j-(int)coins[i-1]];
-					//System.out.println("b:" + i + "," + j + ":" + coins[i-1] + " " + res[i][j]);
+//					System.out.println("b:" + i + "," + j + ":" + coins[i-1] + " " + res[i][j]);
 				} else {
 					res[i][j] = res[i-1][j];
-					//System.out.println("c:" + i + "," + j + ":" + coins[i-1] + " " + res[i][j]);
+//					System.out.println("c:" + i + "," + j + ":" + coins[i-1] + " " + res[i][j]);
 				}
 			}
 		}

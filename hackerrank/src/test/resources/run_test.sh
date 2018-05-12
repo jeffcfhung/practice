@@ -63,7 +63,7 @@ test() {
     if [ "$LANG" = "java" ] ; then
         execCmd="java -classpath ../../main/java ${program}"
     fi
-    expect "`${execCmd} < ${program}_input${case}.txt`" "`cat ${program}_output${case}.txt`"
+    expect "`time ${execCmd} < ${program}_input${case}.txt`" "`cat ${program}_output${case}.txt`"
 }
 
 create_data_file() {
